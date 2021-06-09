@@ -72,14 +72,13 @@ if (isset($_POST['nPretragaPrezimeK'])) {
 if(isset($_POST['nOdabranaPrivilegija'])){
     $odabrana = $_POST['nOpcijePretrageK'];
     $query = "UPDATE `korisnici` SET `privilegija`='$odabrana' WHERE `prezime`='$prezimeK'";
-    echo $query;
     echo $odabrana."<br>";
-    var_dump($_POST);
     $rez = $conn->query($query);
     if($rez == false){
         die("Greska, privilegije nisu azurirane: ". $conn->error);
     }
     echo "Podaci su uspesno azurirani!";
+    session_destroy();
 }
 // ======================================kraj pretraga po prezimenu =============================
 

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w3-container">
+        <div class="w3-bar w3-light-grey">
+            <div class="w3-dropdown-hover" style="margin-left: 45%;">
+                <button class="w3-button">Meni</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <a href="index.html" class="w3-bar-item w3-button">Imenik</a>
+                    <a href="vazniTelefoni.html" class="w3-bar-item w3-button">Vazni telefoni</a>
+                    <a href="Korisnicko uputstvo.html" class="w3-bar-item w3-button">Korisnicko uputstvo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <form>
+        <input id="pretraga" type="text" name="search" placeholder="Pretrazi.." autocomplete="off">
+    </form>
+    <br>
+
+    <div class="bar">
+        <table id="tabelica" style="width: 100%;">
+            <thead>
+                <tr id="Topis">
+                    <th>ID</th>
+                    <th>Naziv</th>
+                    <th>Adresa</th>
+                    <th>Mesto</th>
+                    <th>Broj telefona</th>
+                    <th>Elektornska posta</th>
+                </tr>
+            </thead>
+        </table>
+
+        <script>
+            $(function () {
+                $.get('./vazni telefoni.txt', function (data) {
+                    var niz = data.split('\n');
+                    console.log(niz);
+                    var objekt = [];
+                    for (let i = 0; i < niz.length; i++) {
+                        var obj = new Object();
+                        var nizz = [];
+                        nizz = niz[i].split('|');
+                        obj.lozinka = nizz[0];
+                        obj.ime = nizz[1];
+                        obj.adresa = nizz[2];
+                        obj.mesto = nizz[3];
+                        obj.brojMobilnoga = nizz[4];
+                        obj.elektronskaPosta = nizz[5];
+                        objekt.push(obj);
+                    }
+                    console.log(objekt);
+                    for (let i = 0; i < objekt.length; i++) {
+                        red = "<tr><td class=" + i + ">" + objekt[i].lozinka + "</td><td class=" + i + ">" + objekt[i].ime + "</td><td class=" + i + ">" + objekt[i].adresa + "</td><td class=" + i + ">" + objekt[i].mesto + "</td><td class=" + i + ">" + objekt[i].brojMobilnoga + "</td><td class=" + i + ">" + objekt[i].elektronskaPosta + "</td></tr>";
+                        $('#tabelica tr:last').after(red);
+                        //$('#Topis').append('<td>' + objekt[i].lozinka + '</td>');
+                    }
+                })
+            })
+
+            $("#pretraga").keyup(function () {
+                var value = this.value.toLowerCase().trim();
+
+                $("table tr").each(function (index) {
+                    if (!index) return;
+                    $(this).find("td").each(function () {
+                        var id = $(this).text().toLowerCase().trim();
+                        var not_found = (id.indexOf(value) == -1);
+                        $(this).closest('tr').toggle(!not_found);
+                        return not_found;
+                    });
+                });
+            });
+        </script>
+</body>
+
+</html>

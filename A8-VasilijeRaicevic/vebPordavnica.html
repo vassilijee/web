@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Veb prodavnica</title>
+</head>
+
+<body>
+    <!-- <table>
+        <tbody>
+            <tr>
+                <td>
+                    <p>1</p>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <p>2</p>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </tbody>
+    </table> -->
+    <!-- DivTable.com -->
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <form>
+        <input id="pretraga" type="text" name="search" placeholder="Pretrazi.." autocomplete="off">
+    </form>
+    <form>
+        <label>Proizvodjac</label>
+        <select id="sektori" name="sektori">
+            <option value="WinWin">Win Win</option>
+            <option value="Gigaton">Gigatron</option>
+        </select>
+    </form>
+    <form>
+        <label>Ram memorija</label>
+        <select id="sektori" name="sektori">
+            <option value="512mb">512MB</option>
+            <option value="1gb">1GB</option>
+            <option value="1ipoGB">1.5GB</option>
+            <option value="2gb">2GB</option>
+            <option value="3gb">3GB</option>
+        </select>
+    </form>
+    <form>
+        <label>Procesor</label>
+        <select id="sektori" name="sektori">
+            <option value="i5">i5</option>
+            <option value="i7">i7</option>
+            <option value="amd">AMD Ryzen</option>
+        </select>
+    </form>
+    <form>
+        <label>Kamera</label>
+        <select id="sektori" name="kamesektorira">
+            <option value="C310">C310HD</option>
+            <option value="C410">C410HD</option>
+        </select>
+    </form>
+    <form>
+        <label>Ekran</label>
+        <select id="sektori" name="sektori">
+            <option value="dvaes1">21</option>
+            <option value="dvaes2">22</option>
+            <option value="dvaes2ipo">22.5</option>
+            <option value="dvaes4">24</option>
+        </select>
+    </form>
+    <table id="tabelica" style="width: 100%;">
+        <thead>
+            <tr id="Topis">
+                <th>Sifra artikla</th>
+                <th>Naziv artikla</th>
+                <th>Proizvodjac</th>
+                <th>RAM memorija</th>
+                <th>Tip procesora</th>
+                <th>Kamera</th>
+                <th>Ekran</th>
+                <th>Slika</th>
+                <th>Cena</th>
+            </tr>
+        </thead>
+    </table>
+    <script>
+        $(function () {
+            $.get('./vebprodavnica.txt', function (data) {
+                var niz = data.split('\n');
+                console.log(niz);
+                var objekat = [];
+                for (let i = 0; i < 9; i++) {
+                    var obj = new Object();
+                    obj.sifraArtikla = niz[i].substring(0, 5).replace(/\s/g, ''); // .substring => od 0 do 5 indexa; .replace => sklanja space iz stringa
+                    obj.nazivArtikla = niz[i].substring(6, 30).replace(/\s/g, '');
+                    obj.proizvodjac = niz[i].substring(31, 50).replace(/\s/g, '');
+                    obj.ramMemorija = niz[i].substring(51, 55).replace(/\s/g, '');
+                    obj.tipProcesora = niz[i].substring(56, 70).replace(/\s/g, '');
+                    obj.kamera = niz[i].substring(71, 80).replace(/\s/g, '');
+                    obj.ekran = niz[i].substring(81, 85).replace(/\s/g, '');
+                    obj.slika = niz[i].substring(91, 120).replace(/\s/g, '');
+                    obj.cena = niz[i].substring(124, 132);
+                    objekat.push(obj);
+                }
+                console.log(objekat);
+                for (let i = 0; i < objekat.length; i++) {
+                    red = "<tr><td class=" + i + ">" + objekat[i].sifraArtikla + "</td><td class=" + i + ">" + objekat[i].nazivArtikla + "</td><td class=" + i + ">" + objekat[i].proizvodjac + "</td><td class=" + i + ">" + objekat[i].ramMemorija + "</td><td class=" + i + ">" + objekat[i].tipProcesora + "</td><td class=" + i + ">" + objekat[i].kamera + "</td><td class=" + i + ">" + objekat[i].ekran + "</td><td class=" + i + ">" + "<img src=" + objekat[i].slika + " width=80 height80>" + "</td><td class=" + i + ">" + objekat[i].cena + "</td></tr>";
+                    $('#tabelica tr:last').after(red);
+                    //$('#Topis').append('<td>' + objekt[i].lozinka + '</td>');
+                }
+            })
+        })
+
+        $("#pretraga").keyup(function () {
+            var value = this.value.toLowerCase().trim();
+
+            $("table tr").each(function (index) {
+                if (!index) return;
+                $(this).find("td").each(function () {
+                    var id = $(this).text().toLowerCase().trim();
+                    var not_found = (id.indexOf(value) == -1);
+                    $(this).closest('tr').toggle(!not_found);
+                    return not_found;
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h3>U biblioteci</h3>
+    <button onclick="dodajKnjigu()">Dodaj knjigu</button>
+    <button onclick="proveriSkladiste()">Osvezi</button>
+    <hr />
+    <table id="tabelaBiblioteka" style="width: 100%;" border="1"></table>
+    <h3>Iznajmljeno</h3>
+    <table id="tabelaIznajmljeno" style="width: 100%" border="1"></table>
+  </body>
+  <script>
+    var tabelaBiblioteka = document.getElementById("tabelaBiblioteka");
+    var tabelaIznajmljeno = document.getElementById("tabelaIznajmljeno");
+    var nizNaStanju = [];
+    var nizIznajmljeno = [];
+
+    function knjiga(id, naziv, pisac, cena) {
+      this.id = id;
+      this.naziv = naziv;
+      this.pisac = pisac;
+      this.cena = cena;
+    }
+
+    function osveziBiblioteku() {
+      var htmlKod = "";
+      htmlKod += "<tr><th>ID</th><th>Naziv</th><th>Pisac</th><th>Cena</th>";
+      for (i = 0; i < nizNaStanju.length; i++) {
+        htmlKod += "<tr>";
+        htmlKod += "<td>" + nizNaStanju[i].id + "</td>";
+        htmlKod += "<td>" + nizNaStanju[i].naziv + "</td>";
+        htmlKod += "<td>" + nizNaStanju[i].pisac + "</td>";
+        htmlKod += "<td>" + nizNaStanju[i].cena + "</td>";
+        htmlKod += "</tr>";
+      }
+      document.getElementById("tabelaBiblioteka").innerHTML = htmlKod;
+    }
+
+    function osveziIznajmljeno() {
+      var htmlKod = "";
+      htmlKod += "<tr><th>ID</th><th>Naziv</th><th>Pisac</th><th>Cena</th>";
+      for (i = 0; i < nizIznajmljeno.length; i++) {
+        htmlKod += "<tr>";
+        htmlKod += "<td>" + nizIznajmljeno[i].id + "</td>";
+        htmlKod += "<td>" + nizIznajmljeno[i].naziv + "</td>";
+        htmlKod += "<td>" + nizIznajmljeno[i].pisac + "</td>";
+        htmlKod += "<td>" + nizIznajmljeno[i].cena + "</td>";
+        htmlKod += "</tr>";
+      }
+      document.getElementById("tabelaIznajmljeno").innerHTML = htmlKod;
+    }
+    //demo();
+    osveziBiblioteku();
+    osveziIznajmljeno();
+
+    function dodajKnjigu() {
+      var id = prompt("Unesite id knjige");
+      var naziv = prompt("Unesite naziv knjige");
+      var pisac = prompt("Unesite pisca knjige");
+      var cena = prompt("Unesite cenu knjige");
+      var nk = new knjiga(id, naziv, pisac, cena);
+      nizNaStanju = nizNaStanju.concat(nk);
+      skladisti();
+      osveziBiblioteku();
+    }
+
+    function skladisti() {
+      var baza = { ns: nizNaStanju, i: nizIznajmljeno };
+      baza = JSON.stringify(baza);
+      window.localStorage.setItem("bazaBiblioteka", baza);
+    }
+
+    function proveriSkladiste() {
+      var baza = window.localStorage.getItem("bazaBiblioteka");
+      var podaci = JSON.parse(baza);
+      if (podaci.ns != "") {
+        nizNaStanju = podaci.ns;
+      }
+      if (podaci.i != "") {
+        nizIznajmljeno = podaci.i;
+      }
+      osveziBiblioteku();
+      osveziIznajmljeno();
+    }
+    proveriSkladiste();
+  </script>
+</html>

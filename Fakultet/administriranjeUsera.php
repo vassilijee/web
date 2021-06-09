@@ -85,6 +85,7 @@ if(!isset($_SESSION['privilegija']) && $_SESSION['privilegija']!=="Admin"){heade
 <form action="obradaAdmin.php" method="post" enctype="multipart/form-data">
     <input type="text" name="nidKorisnika" id="iIndeks" placeholder="unesite id korisnika" value='<?php echo $_SESSION['indeks']??"" ?>'><br>
     <input type="text" name="nprezimeK" id="iPrezime" placeholder="unesite prezime" value='<?php echo $_SESSION['prezime']??"" ?>'><br>
+    <input type="text" name="nimeK" id="iIme" placeholder="unesite ime" value='<?php echo $_SESSION['ime']??"" ?>'><br>
     <input type="text" name="nemailK" id="iIme" placeholder="unesite email" value='<?php echo $_SESSION['ime']??"" ?>'><br>
 
     <!-- <input type="submit" value="Dodaj" name="nDodaj" id="iDodaj"> -->
@@ -95,10 +96,11 @@ if(!isset($_SESSION['privilegija']) && $_SESSION['privilegija']!=="Admin"){heade
     <input type="reset" value="Reset" name="nReset" id="iReset"><br>
 
     <select name="nOpcijePretrage" id="iOpcijePretrage">
-        <option value="broj_indeksa">id korisnika</option>
+        <option value="broj_indeksa">Broj indeksa</option>
         <option value="prezime">Prezime</option>
         <option value="ime">Ime</option>
-        <option value="status">email</option>
+        <option value="status">Status</option>
+        <option value="sifra">Sifra smera</option>
     </select>
 
     <input type="text" name="nTerminPretrage" id="iTerminPretrage" placeholder="unesite termin pretrage...">

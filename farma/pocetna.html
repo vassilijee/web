@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascriptt.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="style.css" />
+  <title>Galerija</title>
+</head>
+
+<body>
+  <ul>
+    <li><a class="active" href="pocetna.html">Pocetna</a></li>
+    <li><a href="uputstvo.html">Uputstvo</a></li>
+    <li><a href="oAutoru.html">O autoru</a></li>
+  </ul>
+  <br><br>
+  <p id="tekst" style="color: white;"></p>
+  <div id="sve">
+    <div id="maleSlike">
+      <img src="slike/konj.png" onmouseover="startZvuk('konjj')" onmouseout="stopZvuk('konjj')" alt="konj" class="mala"
+        data-toggle="modal" data-target="#staticBackdrop">
+      <img src="slike/kokoska.png" onmouseover="startZvuk('kokoskaa')" onmouseout="stopZvuk('kokoskaa')" alt="kokoska"
+        class="mala" data-toggle="modal" data-target="#staticBackdrop">
+      <img src="slike/kucko.png" onmouseover="startZvuk('kuckoo')" onmouseout="stopZvuk('kuckoo')" alt="kucko"
+        class="mala" data-toggle="modal" data-target="#staticBackdrop">
+      <img src="slike/macka.png" onmouseover="startZvuk('mackaa')" onmouseout="stopZvuk('mackaa')" alt="macka"
+        class="mala" data-toggle="modal" data-target="#staticBackdrop">
+      <img src="slike/svinja.png" onmouseover="startZvuk('svinjaa')" onmouseout="stopZvuk('svinjaa')" alt="svinja"
+        class="mala" data-toggle="modal" data-target="#staticBackdrop">
+    </div>
+
+    <audio id="konjj" src="zvukovi/konj.mp3"></audio>
+    <audio id="svinjaa" src="zvukovi/svinja.mp3"></audio>
+    <audio id="mackaa" src="zvukovi/macka.mp3"></audio>
+    <audio id="kuckoo" src="zvukovi/kucko.mp3"></audio>
+    <audio id="kokoskaa" src="zvukovi/kokoska.mp3"></audio>
+
+
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Opis zivotinjke</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var obj = {
+        svinja: {
+          opis: "Svinja. ",
+        },
+        konj: {
+          opis: "Konj. ",
+        },
+        kucko: {
+          opis: "Kucko. ",
+        },
+        macka: {
+          opis: "Macka. ",
+        },
+        kokoska: {
+          opis: "Kokoska. ",
+        }
+      }
+
+      var slika = document.getElementsByTagName('img');
+
+      function startZvuk(soundobj) {
+        var zvuk = document.getElementById(soundobj);
+        zvuk.play();
+      }
+      function stopZvuk(soundobj) {
+        var zvuk = document.getElementById(soundobj);
+        zvuk.pause();
+        zvuk.currentTime = 0;
+      }
+      for (i = 0; i < slika.length; i++) {
+        slika[i].addEventListener('click', function () {
+          $('.modal-body').text(obj[this.alt].opis);
+        })
+      }
+    </script>
+
+</body>
+
+</html>

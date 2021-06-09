@@ -1,0 +1,9 @@
+001   Altos Zero               Win Win             2GB  AMD Ryzen      C310HD    22.5      racunari\altos.jpg               87767.99  
+002   Acomp Lego               Win Win             1.5GBAMD Ryzen      C410HD    21        racunari\acomp.jpg               70000.50  
+003   Gcomp Lego               Gigatron            1GB  Intel i5       C410HD    22        racunari\gcomp.jpg               50100.49  
+004   Fierce                   Gigatron            2GB  Intel i5       C410HD    24        racunari\fierce.jpg              100100.49 
+005   Gamer 24                 Gigatron            3GB  Intel i5       C310HD    24        racunari\gamer24.jpg             120100.49 
+006   Gamer 28                 Gigatron            3GB  Intel i7       C410HD    24        racunari\gamer28.jpg             130000.49 
+007   Seda                     Win Win             3GB  Intel i7       C410HD    24        racunari\seda.jpg                139999.99 
+008   Techno                   Win Win             512MBIntel i5       C310HD    22.5      racunari\techno.jpg              95000.99  
+009   Vibox                    Win Win             2GB  Intel i5       C410HD    22.5      racunari\vibox.jpg               98000.99  
