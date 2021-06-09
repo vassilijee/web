@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"
+        integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <input autofocus id="namirnica" type="text" placeholder="Ukucajte namirnicu koju zelite da dodate..."
+        style="width: 25vw;">
+    <button id="dodaj">Dodaj namirnicu</button>
+
+    <ol></ol>
+
+    <script>
+        $(document).ready(function () {
+            $("#dodaj").click(function () {
+                $("ol").append("<li>" + $("#namirnica").val() + "</li>");
+                $("li").click(function () {
+                    $(this).remove();
+                })
+            });
+        });
+        document.getElementById("namirnica").addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("dodaj").click();
+            }
+        });
+    </script>
+</body>
+
+</html>
