@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascript.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+  <title>Galerija</title>
+</head>
+
+<body>
+  <ul>
+    <li><a class="active" href="pocetna.html">Pocetna</a></li>
+    <li><a href="uputstvo.html">Uputstvo</a></li>
+    <li><a href="oAutoru.html">O autoru</a></li>
+  </ul>
+  <br><br>
+  <p id="tekst" style="color: white;"></p>
+  <div id="sve">
+    <div id="velikaSlika">
+      <img src="slike/1.jpg" alt="" id="velika">
+    </div>
+    <div id="maleSlike">
+      <img src="slike/1.jpg" class="mala" id="1">
+      <img src="slike/2.jpg" class="mala" id="2">
+      <img src="slike/3.jpg" class="mala" id="3">
+      <img src="slike/4.jpg" class="mala" id="4">
+      <img src="slike/5.jpg" class="mala" id="5">
+      <img src="slike/6.jpg" class="mala" id="6">
+      <img src="slike/7.jpg" class="mala" id="7">
+      <img src="slike/8.jpg" class="mala" id="8">
+      <img src="slike/9.jpg" class="mala" id="9">
+      <img src="slike/10.jpg" class="mala" id="10">
+    </div>
+    <script>
+      //Ne radi mi eksterni js
+      var tekst = document.getElementById("tekst");
+
+      $(".mala").click(function () {
+        var src = $(this).attr("src")
+        $("#velika").attr("src", src);
+      });
+
+      $(".mala").click(function () {
+        var brojslike = $(this).attr("id")
+        $("#tekst").text("Slika " + brojslike);
+      });
+    </script>
+
+</body>
+
+</html>

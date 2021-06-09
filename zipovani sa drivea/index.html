@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="Prikazi" onclick="prikazi()">
+    <div id="div"></div>
+    <script>
+        function prikazi() {
+            let req = new XMLHttpRequest();// kreiranje ajax zahteva
+            //provera zahteva
+
+            let div = document.getElementById('div');
+            let style = document.createElement('style');// dodajemo css element
+            style.innerText = "#div { border:2px solid red; height: 200px; width:80%; margin:20px auto;}";// sadrzaj css-a
+            let head = document.getElementsByTagName('head');// uzimamo kao objekat head
+            head[0].appendChild(style);//dodajemo u head css element
+
+            req.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {// da li je zahtev obradjen i odgovr spreman
+                    console.log(req.responseText);// odgovor web servera
+                    // pretvaranje respons teksta u objekat
+                    obj = JSON.parse(req.responseText);
+                    console.log(obj);
+
+                    div.style.backgroundColor = obj[1].ColorName; // iz niza objekata drugi objekat sa pa njegovo svojstvo boja
+
+                }
+            }
+
+
+
+            req.open('GET', 'https://mysafeinfo.com/api/data?list=htmlcolors&format=json&case=default', true);
+            req.send();
+        }
+    </script>
+</body>
+
+</html>
